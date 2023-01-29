@@ -1,0 +1,10 @@
+endpoint: http://localhost:4466
+datamodel:
+  - ./prisma/models/prisma.users.graphql
+  - ./prisma/models/prisma.posts.graphql
+generate:
+  - generator: javascript-client
+    output: ./generated/prisma-client/
+hooks:
+  post-deploy:
+    - prisma1 generate

@@ -1,0 +1,12 @@
+enum UserRoleEnum {
+  ADMIN
+  AUTHOR
+}
+
+type User {
+  id: ID! @id
+  email: String @unique
+  role: UserRoleEnum 
+  name: String!
+  posts: [Post!]!
+}

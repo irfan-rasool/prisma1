@@ -1,0 +1,14 @@
+node_modules
+generated
+# Keep environment variables out of version control
+dist
+log
+package-lock.json
+tslint.json
+.env
+.vscode
+.nyc_output
+.idea
+.docker
+.history
+.DS_Store
