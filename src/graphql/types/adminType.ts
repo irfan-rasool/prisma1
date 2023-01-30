@@ -20,7 +20,10 @@ export default `
 
     posts(
       role: String!
-      ): [Post]   
+      ): [Post] 
+
+    publishedPosts: [Post!]!
+
   }
 
   type Mutation {
@@ -29,5 +32,7 @@ export default `
       name: String!
       role: String!
       ): Boolean! 
+
+    publish(postId: ID!): Post
   }
 `;

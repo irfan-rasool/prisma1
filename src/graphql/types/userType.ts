@@ -3,20 +3,27 @@ export default `
     id: String!
     email: String
     name: String
-    posts: [Post]
+    posts: [Post!]!
   }
   
   type Post {
     id: String!
     title: String
     published: Boolean
+    author: User
+  }
+
+  input UserFilter {
+    role: String!
+    email: String!
   }
 
   type Query {
     user(
       role: String!
       email: String!
-      ): [User]
+      ): User
+    postsByUser(userId: ID!): [Post!]!
   }
 
   type Mutation {

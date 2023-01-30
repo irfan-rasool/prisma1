@@ -9,13 +9,27 @@ export default {
 			if (!args.email) {
 				throw new Error('Email Id is not set')
 			}
-			return await context.prisma.user.findMany({ id: args.email, role: "AUTHOR" });
+			const users = await context.prisma.user({ email: args.email })
+			console.log(JSON.stringify(users));
+			return users
+		},
+		postsByUser: async (parent: any, args: any, context: any, info: any) => {
+			if (!args.userId) {
+				throw new Error('Author ID is missing!')
+			}
+			const author = await context.prisma.user({ id: args.userId })
+			if (author.role !== "AUTHOR") {
+				throw new Error('Unauthorized access!')
+			}
+			const postss = await context.prisma.user({ id: args.userId }).posts()
+			console.log(JSON.stringify(postss));
+
+			return postss
 		}
 	},
 
 	Mutation: {
 		createPost: async (parent: any, args: any, context: any, info: any) => {
-
 			try {
 				console.log(JSON.stringify(args))
 				const user = await context.prisma.createPost({
